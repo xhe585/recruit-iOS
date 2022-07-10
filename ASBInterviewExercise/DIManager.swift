@@ -7,6 +7,7 @@
 
 import Foundation
 import Swinject
+import SwinjectStoryboard
 
 class DIManager {
     static let shared = DIManager()
@@ -14,7 +15,7 @@ class DIManager {
     var assembler: Assembler
     
     init() {
-        let assembler = Assembler([ServiceAssembly()])
+        let assembler = Assembler([ServiceAssembly(), ViewControllerAssembly()], container: SwinjectStoryboard.defaultContainer)
         self.assembler = assembler
     }
     
@@ -27,6 +28,27 @@ class ServiceAssembly: Assembly {
     func assemble(container: Container) {
         container.register(RestClient.self) { resolver in
             return RestClient()
+        }.inObjectScope(.transient)
+        
+        container.register(TransactionApiService.self) { resolver in
+            return TransactionApiService(restClient: resolver.resolve(RestClient.self)!)
+        }.inObjectScope(.transient)
+        
+
+    }
+}
+
+class ViewControllerAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(MainViewController.self) { r in
+            let controller = MainViewController()
+            controller.apiService = r.resolve(TransactionApiService.self)
+            return controller
+        }.inObjectScope(.transient)
+        
+        container.register(TransactionDetailViewController.self) { r in
+            let controller = TransactionDetailViewController()
+            return controller
         }.inObjectScope(.transient)
     }
 }

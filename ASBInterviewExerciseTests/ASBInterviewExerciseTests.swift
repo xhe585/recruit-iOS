@@ -19,11 +19,14 @@ class ASBInterviewExerciseTests: XCTestCase {
     }
 
     func testGetTransactions() throws {
-        ApiService.shared.getTransactions { transactions in
-            XCTAssertNotEqual(transactions.count, 0)
-        } errorHandler: { error in
-            XCTFail()
-        }
+        let expectation = XCTestExpectation(description: "Fetch transactions")
+        let apiService = DIManager.shared.resolve(TransactionApiService.self)
+        apiService?.fetch(completionHandler: { transactions in
+            expectation.fulfill()
+        }, errorHandler: { error in
+            XCTFail("Fetch transactions failed")
+        })
+        wait(for: [expectation], timeout: 1)
     }
 
     func testPerformanceExample() throws {

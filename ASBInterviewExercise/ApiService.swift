@@ -8,13 +8,22 @@
 import Foundation
 import UIKit
 
-public class ApiService
+protocol ApiService
 {
-    static let shared = ApiService()
+    func fetch(completionHandler: @escaping ([Transaction])-> Void, errorHandler: @escaping (Error) -> Void)
+}
+
+public class TransactionApiService:ApiService
+{
+    let restClient: RestClient
     
-    func getTransactions(completionHandler: @escaping ([Transaction])-> Void, errorHandler: @escaping (Error) -> Void)
+    init(restClient: RestClient)
     {
-        let restClient = DIManager.shared.resolve(RestClient.self)
+        self.restClient = restClient
+    }
+    
+    func fetch(completionHandler: @escaping ([Transaction])-> Void, errorHandler: @escaping (Error) -> Void)
+    {
         let uri = "https://gist.githubusercontent.com/Josh-Ng/500f2716604dc1e8e2a3c6d31ad01830/raw/4d73acaa7caa1167676445c922835554c5572e82/test-data.json"
 
         guard let url = URL(string: uri) else {
@@ -26,7 +35,7 @@ public class ApiService
         request.httpMethod = "GET"
         
         //TODO need wrap this
-        restClient?.apiRequest(request, completionHandler: { data, response, error in
+        restClient.apiRequest(request, completionHandler: { data, response, error in
             if error != nil{
                 //TODO handle error
             } else {

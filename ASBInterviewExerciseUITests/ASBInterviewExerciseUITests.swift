@@ -22,13 +22,12 @@ class ASBInterviewExerciseUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testTransactionsTable() throws {
+        
         let app = XCUIApplication()
-        app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        app.activate()
+        let collierGroupStaticText = XCUIApplication().tables/*@START_MENU_TOKEN@*/.staticTexts["Collier Group"]/*[[".cells.staticTexts[\"Collier Group\"]",".staticTexts[\"Collier Group\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        collierGroupStaticText.tap()
     }
 
     func testLaunchPerformance() throws {

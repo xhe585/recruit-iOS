@@ -16,20 +16,22 @@ class TransactionTableViewCell: UITableViewCell
 class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var transactions: [Transaction] = []
+    var apiService: TransactionApiService?
+    private var _transaction: [Transaction] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        //apiService = DIManager.shared.resolve(TransactionApiService.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ApiService.shared.getTransactions { transactions in
-            self.transactions = transactions.sorted { t1, t2 in
+        apiService?.fetch { transactions in
+            self._transaction = transactions.sorted { t1, t2 in
                 return t1.transactionDate > t2.transactionDate
             }
             DispatchQueue.main.async {
@@ -44,7 +46,7 @@ class MainViewController: UIViewController {
         if(segue.identifier == "showTransactionDetailSegue") {
             guard let cell = sender as? UITableViewCell else { return }
             guard let indexPath = tableView.indexPath(for: cell) else { return }
-            let transaction = transactions[indexPath.row]
+            let transaction = _transaction[indexPath.row]
             let viewController = segue.destination as! TransactionDetailViewController
             viewController.transaction = transaction
         }
@@ -59,13 +61,13 @@ extension MainViewController: UITableViewDelegate {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count;
+        return _transaction.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionTableViewCell", for: indexPath) as! TransactionTableViewCell
 
-        let transaction = transactions[indexPath.row]
+        let transaction = _transaction[indexPath.row]
         cell.summaryLabel.text = transaction.summary
         
         let formatter = NumberFormatter()
