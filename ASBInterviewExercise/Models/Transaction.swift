@@ -9,8 +9,12 @@ import Foundation
 
 struct Transaction: Codable {
     let id:Int
-    let transactionDate:String //TODO should use date instead of string
+    let transactionDate:Date
     let summary:String
     let debit:Decimal
     let credit:Decimal
+    
+    func getBalance() -> Decimal{
+        return credit - debit
+    }
 }
