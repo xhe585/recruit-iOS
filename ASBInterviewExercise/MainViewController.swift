@@ -10,7 +10,6 @@ import UIKit
 class TransactionTableViewCell: UITableViewCell
 {
     @IBOutlet weak var summaryLabel: UILabel!
-    
 }
 
 class MainViewController: UIViewController {
@@ -22,6 +21,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
+        tableView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,7 +37,19 @@ class MainViewController: UIViewController {
         }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "showTransactionDetailSegue") {
+            guard let cell = sender as? UITableViewCell else { return }
+            guard let indexPath = tableView.indexPath(for: cell) else { return }
+            let transaction = transactions[indexPath.row]
+            let viewController = segue.destination as! TransactionDetailViewController
+            viewController.transaction = transaction
+        }
+    }
+}
+
+extension MainViewController: UITableViewDelegate {
+    //delegate overrides
 }
 
 extension MainViewController: UITableViewDataSource {

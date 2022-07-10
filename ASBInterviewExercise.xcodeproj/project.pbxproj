@@ -10,6 +10,7 @@
 		8C45E75628785DF8000E5980 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45E75528785DF8000E5980 /* Transaction.swift */; };
 		8C45E759287A5164000E5980 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45E758287A5164000E5980 /* JsonManager.swift */; };
 		8C45E75B287A676B000E5980 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45E75A287A676B000E5980 /* ApiService.swift */; };
+		8C45E75F287A8ECF000E5980 /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C45E75E287A8ECF000E5980 /* TransactionDetailViewController.swift */; };
 		DCF7BB0426B23DFF00AE0E0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7BB0326B23DFF00AE0E0E /* AppDelegate.swift */; };
 		DCF7BB0626B23DFF00AE0E0E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7BB0526B23DFF00AE0E0E /* SceneDelegate.swift */; };
 		DCF7BB0826B23DFF00AE0E0E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF7BB0726B23DFF00AE0E0E /* MainViewController.swift */; };
@@ -44,6 +45,7 @@
 		8C45E75528785DF8000E5980 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		8C45E758287A5164000E5980 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		8C45E75A287A676B000E5980 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		8C45E75E287A8ECF000E5980 /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
 		DCF7BB0026B23DFE00AE0E0E /* ASBInterviewExercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASBInterviewExercise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF7BB0326B23DFF00AE0E0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCF7BB0526B23DFF00AE0E0E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				DCF7BB3826B23ED000AE0E0E /* DIManager.swift */,
 				8C45E758287A5164000E5980 /* JsonManager.swift */,
 				8C45E75A287A676B000E5980 /* ApiService.swift */,
+				8C45E75E287A8ECF000E5980 /* TransactionDetailViewController.swift */,
 			);
 			path = ASBInterviewExercise;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				DCF7BB3726B23EB800AE0E0E /* RestClient.swift in Sources */,
 				DCF7BB0826B23DFF00AE0E0E /* MainViewController.swift in Sources */,
 				8C45E75628785DF8000E5980 /* Transaction.swift in Sources */,
+				8C45E75F287A8ECF000E5980 /* TransactionDetailViewController.swift in Sources */,
 				DCF7BB0426B23DFF00AE0E0E /* AppDelegate.swift in Sources */,
 				DCF7BB0626B23DFF00AE0E0E /* SceneDelegate.swift in Sources */,
 				8C45E75B287A676B000E5980 /* ApiService.swift in Sources */,
